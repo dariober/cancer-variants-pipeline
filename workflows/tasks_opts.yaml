@@ -1,0 +1,37 @@
+# Options configuring one or more tasks
+# Option names must contain only alphanumeric or the underscore character '_'
+
+ref:
+  description: Reference fasta file
+  type: file
+ 
+bbduk_trimq:
+  default: 12
+  type: int
+  description: Base quality threshold passed to `bbduk.sh` to trim reads prior to alignment. See also `bbduk.sh -h`
+
+bbduk_minlength:
+  default: 15
+  type: int
+  description: Reads shorter than this will be discarded prior to alignment. See also `bbduk.sh -h`.
+
+mutect_pon:
+  description: VCF of variants detected by mutect in a Panel Of Normal samples to filter the output of mutect
+  type: file
+
+vep_dir_cache:
+  description: The cache directory used by ensembl/VEP to annotate variants. If missing,
+    annotation will be skipped. To download a cache see
+    https://www.ensembl.org/info/docs/tools/vep/script/vep_cache.html#cache. By
+    default, vep runs with the `--hgvs --fasta [ref]` options enabled so to add
+    HGVS information, see
+    https://www.ensembl.org/info/docs/tools/vep/script/vep_cache.html#fasta
+  type: file
+
+cnv_facets_snp:
+  description: VCF of polymorphic SNPs to detect copy number variants. See also `cnv_facets.R -h`. A source for this VCF may be dbSNP or gnomAD
+  type: file
+
+calculateContamination_vcf:
+  description: VCF of polymorphic SNPs to pass to gatk/getPileupSummaries. The recommended choice from GATK team is to use gnomAD SNPs
+  type: file

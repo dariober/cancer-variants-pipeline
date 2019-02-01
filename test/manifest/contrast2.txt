@@ -1,0 +1,4 @@
+fastq_1	fastq_2	sample	tn_pair	sample_type
+test_data/fastq/N1_S4_R1_001.fastq.gz	test_data/fastq/N1_S4_R2_001.fastq.gz	A	NA	Normal
+test_data/fastq/T1_S4_R1_001.fastq.gz	test_data/fastq/T1_S4_R2_001.fastq.gz	B	NA	Tumour
+test_data/fastq/P1_S4_R1_001.fastq.gz	test_data/fastq/P1_S4_R2_001.fastq.gz	C	NA	Tumour

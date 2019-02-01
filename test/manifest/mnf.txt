@@ -1,0 +1,7 @@
+# Note sample N1 appears twice, as Normal and as PON.
+# And yes, lines starting with # are ignored 
+fastq_1	fastq_2	sample	tn_pair	sample_type
+test_data/fastq/N1_S4_R1_001.fastq.gz	test_data/fastq/N1_S4_R2_001.fastq.gz	N1	P1	Normal
+test_data/fastq/T1_S4_R1_001.fastq.gz	test_data/fastq/T1_S4_R2_001.fastq.gz	T1	P1	Tumor
+test_data/fastq/P1_S4_R1_001.fastq.gz	test_data/fastq/P1_S4_R2_001.fastq.gz	P1	.	PON
+test_data/fastq/N1_S4_R1_001.fastq.gz	test_data/fastq/N1_S4_R2_001.fastq.gz	N1	.	PON

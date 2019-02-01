@@ -1,0 +1,12 @@
+# Each tumour sample is matched to several normals and viceversa.
+# All versus all
+#
+sample	tn_pair	sample_type
+A	P1	Normal
+B	P1	Tumour
+C	P2	Normal
+D	P2	Tumour
+A	P3	Tumour
+B	P3	Normal
+C	4	Tumour
+A	4	Normal

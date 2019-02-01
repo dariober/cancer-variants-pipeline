@@ -1,0 +1,7 @@
+bam	sample	tn_pair	sample_type
+../../test_data/bam/n1.bam	N1	P1	normal
+../../test_data/bam/t1.bam	T1	P1	tumour
+../../test_data/bam/p1.bam	P1	X1	pon
+../../test_data/bam/n1.bam	N1	P2	normal
+../../test_data/bam/p1.bam	T3	P2	tumour
+../../test_data/bam/p1.bam	P1	X1	pon

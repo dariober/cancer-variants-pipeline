@@ -1,0 +1,6 @@
+sample	sample_type	tn_pair	fastq_1	fastq_2
+TCRBOA6-N	normal	A	../../test_data/fastq/TCRBOA6-N.L1.R1.fq.gz	../../test_data/fastq/TCRBOA6-N.L1.R2.fq.gz
+TCRBOA6-T	tumour	A	../../test_data/fastq/TCRBOA6-T.L1.R1.fq.gz	../../test_data/fastq/TCRBOA6-T.L1.R2.fq.gz
+TCRBOA6-T	tumour	A	../../test_data/fastq/TCRBOA6-T.L2.R1.fq.gz	../../test_data/fastq/TCRBOA6-T.L2.R2.fq.gz
+TCRBOA6-N	tumour	B	NA	NA
+TCRBOA6-T	normal	B	NA	NA

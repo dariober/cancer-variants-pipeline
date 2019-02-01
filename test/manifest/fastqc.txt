@@ -1,0 +1,2 @@
+sample	fastq_1	fastq_2	
+L1	data/R1/reads.fastq.gz	data/R2/reads.fastq.gz

@@ -1,0 +1,35 @@
+# List of optional tasks. Task names must must contain only alphanumeric
+# characters or the underscore '_'. Each task has attributes:
+#
+#   - description: Task description
+#
+#   - output: Where the output files will be written. The value of the output
+#           attribute is passed to the 'all_task_output' rule of snakemake
+
+fastqc:
+  description: Execute FastQC on fastq files
+  output: expand('{fastq_md5}', fastq_md5= mnf.fastqc['fastq_md5'])
+
+bwa:
+  description: Align reads using bwa then sort, mark duplicates and index the output bam files
+  output: expand('{sample}/bwa/{sample}.bam.bai', sample= mnf.sample)
+
+samstats:
+  description: Collect alignment metrics by executing `samtools samstats` on each bam file
+  output: expand('{sample}/bwa/{sample}.stats', sample= mnf.sample)
+
+tdf:
+  description: Convert bam to TDF format. TDF is useful for visualising coverage across large genomic regions using e.g. the IGV genome browser
+  output: expand('{sample}/bwa/{sample}.tdf', sample= mnf.sample)
+
+calculateContamination:
+  description: Run gatk/CalculateContamination on each sample to estimate the fraction of reads coming from cross-sample contamination
+  output: expand('{sample}/bwa/calculateContamination/{sample}.cntm', sample= mnf.get_tumour_samples())
+
+mutect:
+  description: Detect Single Nucleotide Variants (SNV) and short indels on each tumour-normal pair using mutect
+  output: expand('{tumour_smp}/bwa/mutect/{normal_smp}/{tumour_smp}.vcf.gz', zip, tumour_smp= mnf.contrasts['tumour_smp'], normal_smp= mnf.contrasts['normal_smp'])
+
+cnv_facets:
+  description: Detect Copy Number Variants (CNVs) using cnv_facets (https://github.com/<FIXME>/cnv_facets)
+  output: expand('{tumour_smp}/bwa/facets/{normal_smp}/{tumour_smp}.vcf.gz', zip, tumour_smp= mnf.contrasts['tumour_smp'], normal_smp= mnf.contrasts['normal_smp']) 
