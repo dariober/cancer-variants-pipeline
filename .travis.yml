@@ -16,18 +16,18 @@ install:
   - conda config --add channels bioconda
   - conda config --add channels conda-forge
   - |
-     echo "name: test-env" > requirements.yml
-     awk -v run=0 '{
-        if($0 ~ "run:"){
-            run=1
-            print "dependencies:"
-        }
-        else if(run == 1 && $0 ~ "-"){
-            print $0
-        }
-        else if(run == 1 && $0 !~ "-"){
-            exit
-        }
+    echo "name: test-env" > requirements.yml
+    awk -v run=0 '{
+       if($0 ~ "run:"){
+           run=1
+           print "dependencies:"
+       }
+       else if(run == 1 && $0 ~ "-"){
+           print $0
+       }
+       else if(run == 1 && $0 !~ "-"){
+           exit
+       }
     }' bioconda_recipe/meta.yaml >> requirements.yml
   - conda env create -f requirements.yml
   - source activate test-env
