@@ -1,0 +1,6 @@
+.snakemake
+downloads/
+bin/manta
+test_out
+__pycache__
+igv.log
