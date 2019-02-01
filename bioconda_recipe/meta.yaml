@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/dariober/cancer-variants-pipeline
-  sha256: '{{sha256}}'
+  # sha256: '{{sha256}}'
 
 build:
   number: 0
