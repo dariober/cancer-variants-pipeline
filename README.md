@@ -1,3 +1,6 @@
+*CODE NOT FUNCTIONAL YET - WORK IN PROGRESS*
+
+
 Pipeline for somatic variant detection from Whole Genome Sequencing 
 ===================================================================
 
