@@ -7,7 +7,7 @@ package:
   version: '{{version}}'
 
 source:
-  url: https://github.com/<FIXME>/cancer-variants-pipeline
+  url: https://github.com/dariober/cancer-variants-pipeline
   sha256: '{{sha256}}'
 
 build:
@@ -37,7 +37,7 @@ test:
     - medusa.py -h > /dev/null 2>&1 || [[ $? == 1 ]]
 
 about:
-  home: https://github.com/<FIXME>/cancer-variants-pipeline
+  home: https://github.com/dariober/cancer-variants-pipeline
   license: MIT
   summary: Pipeline for detection of cancer somatic variants from high-throughput sequencing data
   license_family: MIT
