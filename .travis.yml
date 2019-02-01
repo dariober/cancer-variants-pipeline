@@ -15,14 +15,22 @@ install:
   - conda config --add channels defaults
   - conda config --add channels bioconda
   - conda config --add channels conda-forge
-  # Useful for debugging any issues with conda
-  - conda info -a
-  - conda install conda-build
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
-  - source activate test-environment
-  - conda build bioconda_recipe
-  - conda install medusa --use-local
-
+  - |
+     echo "name: test-env" > requirements.yml
+     awk -v run=0 '{
+        if($0 ~ "run:"){
+            run=1
+            print "dependencies:"
+        }
+        else if(run == 1 && $0 ~ "-"){
+            print $0
+        }
+        else if(run == 1 && $0 !~ "-"){
+            exit
+        }
+    }' bioconda_recipe/meta.yaml >> requirements.yml
+  - conda env create -f requirements.yml
+  - source activate test-env
 script:
     - cd test/medusa01 && python3 test.py
     - cd ../manifest && python3 test.py
