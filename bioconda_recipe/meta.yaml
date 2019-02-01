@@ -7,12 +7,12 @@ package:
   version: '{{version}}'
 
 source:
-  url: https://github.com/dariober/cancer-variants-pipeline
+  # url: https://github.com/dariober/cancer-variants-pipeline
   # sha256: '{{sha256}}'
 
 build:
   number: 0
-  skip: True  # [not linux]
+  skip: True # [not linux]
 
 requirements:
   host:

@@ -26,5 +26,5 @@
 
 set -e
 
-mkdir -p $PREFIX/bin
-chmod a+x workflows/medusa.py
+#mkdir -p $PREFIX/bin
+#chmod a+x workflows/medusa.py
