@@ -156,6 +156,8 @@ class Medusa(unittest.TestCase):
                     --calculateContamination_vcf ../../test_data/ref/gnomad.genomes.r2.0.2.sites.hg38.simple.vcf.gz
         """, shell=True, stdout= sp.PIPE, stderr= sp.PIPE)
         stdout, stderr= p.communicate()
+        print(stderr)
+        print(stdout)
         self.assertEqual(0, p.returncode)
         self.assertTrue(os.path.exists('test_out/TCRBOA6-T/bwa/mutect/TCRBOA6-N/TCRBOA6-T.vcf.gz.tbi'))
         self.assertTrue(os.path.exists('test_out/TCRBOA6-T/bwa/TCRBOA6-T.stats'))
@@ -223,9 +225,11 @@ class Medusa(unittest.TestCase):
     def testBamInput(self):
         p= sp.check_call("""
             mkdir -p test_out &&
+            cp ../../test_data/ref/hg38.chroms.fa test_out/
+            bwa index test_out/hg38.chroms.fa
             for x in TCRBOA6-N TCRBOA6-T
             do
-            bwa mem ../../test_data/ref/hg38.chroms.fa ../../test_data/fastq/${x}.L1.R1.fq.gz \
+            bwa mem test_out/hg38.chroms.fa ../../test_data/fastq/${x}.L1.R1.fq.gz \
                 | samtools sort > test_out/${x}.bam && 
                 samtools index test_out/${x}.bam
             done
@@ -242,7 +246,7 @@ class Medusa(unittest.TestCase):
                     --samstats \
                     --cnv_facets \
                     --cnv_facets_snp ../../test_data/ref/gnomad.genomes.r2.0.2.sites.hg38.simple.vcf.gz \
-                    --ref ../../test_data/ref/hg38.chroms.fa
+                    --ref test_out/hg38.chroms.fa
         """, shell=True, stdout= sp.PIPE, stderr= sp.PIPE)
         stdout, stderr= p.communicate()
 
