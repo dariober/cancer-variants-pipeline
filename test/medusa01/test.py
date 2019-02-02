@@ -57,6 +57,7 @@ def read_vcf(vcf):
 class Medusa(unittest.TestCase):
 
     def setUp(self):
+        sys.stderr.write('\n' + self.id().split('.')[-1] + ' ') # Print test name
         if os.path.exists('test_out'):
             shutil.rmtree('test_out')
 
@@ -242,9 +243,9 @@ class Medusa(unittest.TestCase):
                     --directory test_out \
                     --bwa \
                     --ref ../../test_data/ref/hg38.chroms.fa
-            
-            cp test_out/TCRBOA6-T.bam test_out/TCRBOA6-T2.bam
-            cp test_out/TCRBOA6-T.bam.bai test_out/TCRBOA6-T2.bam.bai
+           
+            cp test_out/TCRBOA6-T/bwa/TCRBOA6-T.bam     test_out/TCRBOA6-T/bwa/TCRBOA6-T2.bam
+            cp test_out/TCRBOA6-T/bwa/TCRBOA6-T.bam.bai test_out/TCRBOA6-T/bwa/TCRBOA6-T2.bam.bai
             """, shell= True)
 
         # NB: To run mutect you would need RG groups in BAMs
