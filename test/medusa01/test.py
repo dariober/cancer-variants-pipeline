@@ -105,6 +105,20 @@ class Medusa(unittest.TestCase):
         self.assertEqual(0, p.returncode)
         self.assertTrue(len(stdout.decode()) > 1000)
 
+    def testAAAACnvFacets(self):
+        p= sp.Popen(r"""
+            ../../workflows/medusa.py -m manifest.txt \
+                    -p \
+                    -gb hg38 \
+                    --directory test_out \
+                    --cnv_facets \
+                    --ref ../../test_data/ref/hg38.chroms.fa \
+                    --cnv_facets_snp ../../test_data/ref/gnomad.genomes.r2.0.2.sites.hg38.simple.vcf.gz 
+        """, shell=True, stdout= sp.PIPE, stderr= sp.PIPE)
+        stdout, stderr= p.communicate()
+        print(stderr.decode())
+        self.assertEqual(0, p.returncode)
+
     def testBwa(self):
         p= sp.Popen(r"""
             ../../workflows/medusa.py -m manifest.txt \
@@ -156,8 +170,7 @@ class Medusa(unittest.TestCase):
                     --calculateContamination_vcf ../../test_data/ref/gnomad.genomes.r2.0.2.sites.hg38.simple.vcf.gz
         """, shell=True, stdout= sp.PIPE, stderr= sp.PIPE)
         stdout, stderr= p.communicate()
-        print(stderr)
-        print(stdout)
+        print(stderr.decode())
         self.assertEqual(0, p.returncode)
         self.assertTrue(os.path.exists('test_out/TCRBOA6-T/bwa/mutect/TCRBOA6-N/TCRBOA6-T.vcf.gz.tbi'))
         self.assertTrue(os.path.exists('test_out/TCRBOA6-T/bwa/TCRBOA6-T.stats'))
@@ -224,15 +237,13 @@ class Medusa(unittest.TestCase):
     
     def testBamInput(self):
         p= sp.check_call("""
-            mkdir -p test_out &&
-            cp ../../test_data/ref/hg38.chroms.fa test_out/
-            bwa index test_out/hg38.chroms.fa
-            for x in TCRBOA6-N TCRBOA6-T
-            do
-            bwa mem test_out/hg38.chroms.fa ../../test_data/fastq/${x}.L1.R1.fq.gz \
-                | samtools sort > test_out/${x}.bam && 
-                samtools index test_out/${x}.bam
-            done
+            ../../workflows/medusa.py -m manifest.txt \
+                    -p \
+                    -gb hg38 \
+                    --directory test_out \
+                    --bwa \
+                    --ref test_out/hg38.chroms.fa
+            
             cp test_out/TCRBOA6-T.bam test_out/TCRBOA6-T2.bam
             cp test_out/TCRBOA6-T.bam.bai test_out/TCRBOA6-T2.bam.bai
             """, shell= True)

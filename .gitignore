@@ -4,3 +4,10 @@ bin/manta
 test_out
 __pycache__
 igv.log
+test_data/ref/hg38.chroms.fa
+test_data/ref/hg38.chroms.fa.amb
+test_data/ref/hg38.chroms.fa.ann
+test_data/ref/hg38.chroms.fa.bwt
+test_data/ref/hg38.chroms.fa.fai
+test_data/ref/hg38.chroms.fa.pac
+test_data/ref/hg38.chroms.fa.sa

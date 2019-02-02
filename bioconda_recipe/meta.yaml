@@ -17,20 +17,21 @@ build:
 requirements:
   host:
   run:
-    - snakemake=5.4.0
-    - fastqc
-    - bwa
-    - bbmap
-    - igvtools
-    - gatk4
-    - cnv_facets
-    - ensembl-vep # Need to install cache files
-    - samtools
-    - bcftools
-    - pandas
-    - pyyaml
-    - colorama
-    - pyfaidx
+    - python >=3.6
+    - snakemake =5.4.0
+    - fastqc =0.11.8
+    - bwa =0.7.17
+    - bbmap =38.22
+    - igvtools =2.3.93
+    - gatk4 =4.1.0.0
+    - cnv_facets >=0.12.1
+    - ensembl-vep =95.1 # Need to install cache files
+    - samtools =1.9
+    - bcftools =1.9
+    - pyfaidx =0.5.5.2
+    - pandas =0.24.0
+    - pyyaml =3.13
+    - colorama =0.4.1
 
 test:
   commands:
