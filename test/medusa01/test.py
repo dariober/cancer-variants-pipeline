@@ -105,7 +105,7 @@ class Medusa(unittest.TestCase):
         self.assertEqual(0, p.returncode)
         self.assertTrue(len(stdout.decode()) > 1000)
 
-    def testAAAACnvFacets(self):
+    def testCnvFacets(self):
         p= sp.Popen(r"""
             ../../workflows/medusa.py -m manifest.txt \
                     -p \
@@ -116,7 +116,6 @@ class Medusa(unittest.TestCase):
                     --cnv_facets_snp ../../test_data/ref/gnomad.genomes.r2.0.2.sites.hg38.simple.vcf.gz 
         """, shell=True, stdout= sp.PIPE, stderr= sp.PIPE)
         stdout, stderr= p.communicate()
-        print(stderr.decode())
         self.assertEqual(0, p.returncode)
 
     def testBwa(self):
@@ -242,7 +241,7 @@ class Medusa(unittest.TestCase):
                     -gb hg38 \
                     --directory test_out \
                     --bwa \
-                    --ref test_out/hg38.chroms.fa
+                    --ref ../../test_data/ref/hg38.chroms.fa
             
             cp test_out/TCRBOA6-T.bam test_out/TCRBOA6-T2.bam
             cp test_out/TCRBOA6-T.bam.bai test_out/TCRBOA6-T2.bam.bai
@@ -257,7 +256,7 @@ class Medusa(unittest.TestCase):
                     --samstats \
                     --cnv_facets \
                     --cnv_facets_snp ../../test_data/ref/gnomad.genomes.r2.0.2.sites.hg38.simple.vcf.gz \
-                    --ref test_out/hg38.chroms.fa
+                    --ref ../../test_data/ref/hg38.chroms.fa
         """, shell=True, stdout= sp.PIPE, stderr= sp.PIPE)
         stdout, stderr= p.communicate()
 
