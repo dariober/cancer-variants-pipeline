@@ -19,6 +19,7 @@ install:
     echo "name: test-env" > requirements.yml
     echo "dependencies:" >> requirements.yml
     echo "  - cnv_facets" >> requirements.yml
+    echo "  - libgfortran" >> requirements.yml
   #   awk -v run=0 '{
   #      if($0 ~ "run:"){
   #          run=1
