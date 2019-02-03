@@ -17,23 +17,27 @@ install:
   - conda config --add channels conda-forge
   - |
     echo "name: test-env" > requirements.yml
-    awk -v run=0 '{
-       if($0 ~ "run:"){
-           run=1
-           print "dependencies:"
-       }
-       else if(run == 1 && $0 ~ "-"){
-           print $0
-       }
-       else if(run == 1 && $0 !~ "-"){
-           exit
-       }
-    }' bioconda_recipe/meta.yaml >> requirements.yml
+    echo "dependencies:" >> requirements.yml
+    echo "  - cnv_facets" >> requirements.yml
+  #   awk -v run=0 '{
+  #      if($0 ~ "run:"){
+  #          run=1
+  #          print "dependencies:"
+  #      }
+  #      else if(run == 1 && $0 ~ "-"){
+  #          print $0
+  #      }
+  #      else if(run == 1 && $0 !~ "-"){
+  #          exit
+  #      }
+  #   }' bioconda_recipe/meta.yaml >> requirements.yml
   - conda env create -f requirements.yml
   - source activate test-env
+  
 script:
-    - bunzip2 -c test_data/ref/hg38.chroms.fa.bz2 > test_data/ref/hg38.chroms.fa
-    - cd test/medusa01 && python3 test.py
-    - cd ../manifest && python3 test.py
-    - cd ../utils && python3 test.py
+    - cnv_facets.R -h
+#    - bunzip2 -c test_data/ref/hg38.chroms.fa.bz2 > test_data/ref/hg38.chroms.fa
+#    - cd test/medusa01 && python3 test.py
+#    - cd ../manifest && python3 test.py
+#    - cd ../utils && python3 test.py
 
