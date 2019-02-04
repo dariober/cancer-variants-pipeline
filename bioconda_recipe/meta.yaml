@@ -32,7 +32,6 @@ requirements:
     - pandas =0.24.0
     - pyyaml =3.13
     - colorama =0.4.1
-    - libgfortran =3.0.0
 
 test:
   commands:
